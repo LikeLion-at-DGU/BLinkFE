@@ -16,6 +16,7 @@ const Outer = styled.div`
   justify-content: center;
   border: 1px solid black;
   margin-left: 150px;
+  padding-bottom: 80px;
   font-size: 50px;
   font-weight: bold;
   gap: 0.5em;
@@ -60,7 +61,7 @@ const PostBox = styled.div`
 const CommentBox = styled.div`
   border: 1px solid black;
   width: 920px;
-  height: 332px;
+  height: auto;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -104,7 +105,7 @@ const CommentForm = styled.form`
 `;
 
 const CommentInput = styled.input`
-  width: 740px;
+  width: 700px;
   height: 40px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -114,37 +115,45 @@ const CommentInput = styled.input`
 //답글
 const UploadedComment = styled.div`
   font-size: 18px;
+  color: gray;
   font-weight: 500;
   margin-left: 20px;
-  color: red;
+  display: flex;
+  margin-left: 20px;
 `;
 
 //오리지널댓글
 const OriginalComment = styled(UploadedComment)`
-  font-size: 20px;
-  color: blue;
+  font-size: 22px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: black;
+  margin-bottom: 20px;
 `;
 
+//답글버튼
 const ReplyButton = styled.button`
   background-color: #c4c4c4;
   color: white;
   border: none;
   padding: 4px 6px;
   border-radius: 3px;
-  font-size: 10px;
-  cursor: pointer;
-  margin-left: 5px;
-`;
-
-const DeleteButton = styled.button`
-  background-color: #c4c4c4;
-  color: white;
-  border: none;
-  padding: 8px 10px;
-  border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
+  width: 49px;
+  height: 20px;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-right: 10px;
+`;
+
+//삭제버튼
+const DeleteButton = styled(ReplyButton)`
+  margin-right: 180px;
 `;
 
 const UploadButton = styled.button`
@@ -159,6 +168,7 @@ const UploadButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 90px;
 `;
 
 const CommentFooter = styled.div`
@@ -168,9 +178,8 @@ const CommentFooter = styled.div`
 `;
 
 const ClipIcon = styled(AiOutlinePaperClip)`
-  font-size: 24px;
   color: #c4c4c4;
-  margin-right: 10px;
+  margin: 4px 6px 0 6px;
 `;
 
 const TitleBox = styled.div`
@@ -263,7 +272,8 @@ const Post2 = (props) => {
     instance
       .get(`/api/mainposts/${mainpostId}`)
       .then((response) => {
-        // Set your state with the data
+        setPostDetail(response.data); // 가져온 데이터를 상태에 저장
+        console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching post data:", error);
@@ -285,7 +295,7 @@ const Post2 = (props) => {
         <TitleBox>
           <Category>
             {postDetail.category}
-            <></>
+            <>/</>
           </Category>
           <Title>{postDetail.title}</Title>
         </TitleBox>
@@ -301,7 +311,17 @@ const Post2 = (props) => {
         </Context>
       </PostBox>
 
-      <ClipBox>첨부파일 자리</ClipBox>
+      <ClipBox>
+        {postDetail.medias &&
+          postDetail.medias.map((mediaObj, index) => (
+            <img
+              key={index}
+              src={mediaObj.media}
+              alt={`Media ${index}`}
+              style={{ width: "100%", height: "auto" }}
+            />
+          ))}
+      </ClipBox>
       <CommentBox>
         <CommentTitle>댓글</CommentTitle>
         <CommentForm onSubmit={handleSubmitComment}>
@@ -329,29 +349,39 @@ const Post2 = (props) => {
 
         {comments.map((comment, index) => (
           <div key={index}>
-            <div>
-              <OriginalComment>
+            <OriginalComment>
+              <div style={{ flex: 1 }}>
                 <strong>{comment.user}:</strong> {comment.text}
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginRight: "10px",
+                }}
+              >
                 <ReplyButton onClick={() => handleReplyButtonClick(index)}>
                   답글
                 </ReplyButton>
                 <DeleteButton onClick={() => handleDeleteComment(index)}>
                   삭제
                 </DeleteButton>
-              </OriginalComment>
-            </div>
+              </div>
+            </OriginalComment>
 
             {comment.replies.map((reply, replyIndex) => (
-              <div key={replyIndex}>
-                <UploadedComment>
+              <UploadedComment key={replyIndex}>
+                <div style={{ flex: 1 }}>
                   <strong>{reply.user}:</strong> {reply.text}
+                </div>
+                <div style={{ marginRight: "10px" }}>
                   <DeleteButton
                     onClick={() => handleDeleteCommentReply(index, replyIndex)}
                   >
                     삭제
                   </DeleteButton>
-                </UploadedComment>
-              </div>
+                </div>
+              </UploadedComment>
             ))}
 
             {comment.showReplyInput && (
@@ -373,9 +403,8 @@ const Post2 = (props) => {
                           setAttachments([...attachments, e.target.files[0]])
                         }
                       />
-                      <ClipIcon />
                     </label>
-                    <UploadButton type="submit">업로드</UploadButton>
+                    <UploadButton type="submit">등록</UploadButton>
                   </CommentFooter>
                 </CommentForm>
               </div>
