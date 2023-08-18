@@ -18,9 +18,9 @@ export const Container = styled.div`
 
 export const Explain = styled.p`
   padding: 40px;
-  color: black;
+  color: blue;
   font-size: 30px;
-  font-weight: 600;
+  font-weight: 800;
 `;
 
 export const Range = styled.select`
@@ -28,14 +28,15 @@ export const Range = styled.select`
   height: 30px;
   margin-left: 40px;
   font-size: 15px;
+  margin-right: 10px;
 `;
 
 export const Outline = styled.div`
   margin: 40px;
   display: flex;
   flex-wrap: wrap;
+  width:1300px;
   justify-content: space-between;
-
   width: ${(props) => (props.selectedCardData !== null ? "vw" : "83vw")};
 `;
 

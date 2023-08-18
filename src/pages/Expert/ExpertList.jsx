@@ -39,12 +39,12 @@ export default function ExpertList() {
     <Upper>
       <Outlet />
       <Container>
-        <Explain>당신에게 맞는 전문가를 찾아보세요!</Explain>
+        <Explain><p>당신에게 맞는 전문가를 찾아보세요!</p></Explain>
         <Range>
-          <option value="latest">최신 순</option>
-          <option value="relevant">관련도 순</option>
+          <option value="latest">최신순</option>
+          <option value="relevant">관련도순</option>
         </Range>
-        <input type="submit" value="적용" />
+        <input type="submit" value="적용" style={{ width: '37px', height: '31px' }}/>
         <Outline>
           {CardData.map((card) => (
             <Link key={card.Id} to={`/expertList/${card.Id}`}>

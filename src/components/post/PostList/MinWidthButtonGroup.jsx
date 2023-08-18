@@ -28,6 +28,7 @@ export default function MinWidthButtonGroup({
 const Card=styled.div`
 width:700px;
 margin-bottom:20px;
+margin-top:20px;
 `
 
   return (

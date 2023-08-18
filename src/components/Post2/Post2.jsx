@@ -115,60 +115,61 @@ const CommentInput = styled.input`
 //답글
 const UploadedComment = styled.div`
   font-size: 18px;
-  color: gray;
+  color:gray;
   font-weight: 500;
-  margin-left: 20px;
-  display: flex;
-  margin-left: 20px;
+  margin-left:20px;
+  display:flex;
+  margin-left:20px;
 `;
 
 //오리지널댓글
 const OriginalComment = styled(UploadedComment)`
   font-size: 22px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  color: black;
-  margin-bottom: 20px;
+  display:flex;
+  align-items:center;
+  gap:2px;
+  color:black;
+  margin-bottom:20px;
 `;
+
 
 //답글버튼
 const ReplyButton = styled.button`
-  background-color: #c4c4c4;
+  background-color: #C4C4C4;
   color: white;
   border: none;
   padding: 4px 6px;
   border-radius: 3px;
   font-size: 14px;
   cursor: pointer;
-  width: 49px;
-  height: 20px;
-  text-align: center;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-right: 10px;
-`;
+  width:49px;
+  height:20px;
+  text-align:center;
+  align-items:center;
+  display:flex;
+  justify-content:center;
+  margin-right:10px;
+  `;
 
 //삭제버튼
 const DeleteButton = styled(ReplyButton)`
-  margin-right: 180px;
+margin-right:180px;
 `;
 
 const UploadButton = styled.button`
-  background-color: #c4c4c4;
+  background-color: #C4C4C4;
   color: white;
   border: none;
   padding: 18px 16px;
-  height: 54px;
+  height:54px;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 90px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:90px;
 `;
 
 const CommentFooter = styled.div`
@@ -178,8 +179,8 @@ const CommentFooter = styled.div`
 `;
 
 const ClipIcon = styled(AiOutlinePaperClip)`
-  color: #c4c4c4;
-  margin: 4px 6px 0 6px;
+  color: #C4C4C4;
+  margin:4px 6px 0 6px;
 `;
 
 const TitleBox = styled.div`
@@ -192,7 +193,29 @@ const Title = styled.div`
 `;
 const Category = styled(Title)`
   margin: 10px 5px 10px 20px;
+`
+const IconWithMargin = styled(MdLocationOn)`
+  margin-left: 10px;
 `;
+
+const More = styled.div`
+  display: flex;
+  justify-content:center;
+  padding-left: 10px;
+`
+
+const So = styled.div`
+  margin-left: 30px;`
+
+function YourComponent({ postDetail }) {
+  return (
+    <HereBox>
+      <IconWithMargin size={30} />
+      request location
+      <Here>: {postDetail.location} </Here>
+    </HereBox>
+  );
+}
 
 // Define your main functional component
 const Post2 = (props) => {
@@ -284,10 +307,10 @@ const Post2 = (props) => {
     <Outer>
       <Text>요청 상세 페이지</Text>
       <HereBox>
-        <>
+        <More>
           <MdLocationOn size={30} />
           요청 위치
-        </>
+        </More>
         <Here>: {postDetail.location} </Here>
       </HereBox>
 
@@ -343,7 +366,7 @@ const Post2 = (props) => {
               />
               <ClipIcon />
             </label>
-            <UploadButton type="submit">댓글달기</UploadButton>
+            <UploadButton type="submit">댓글</UploadButton>
           </CommentFooter>
         </CommentForm>
 
@@ -353,20 +376,11 @@ const Post2 = (props) => {
               <div style={{ flex: 1 }}>
                 <strong>{comment.user}:</strong> {comment.text}
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginRight: "10px",
-                }}
-              >
-                <ReplyButton onClick={() => handleReplyButtonClick(index)}>
-                  답글
-                </ReplyButton>
-                <DeleteButton onClick={() => handleDeleteComment(index)}>
-                  삭제
-                </DeleteButton>
-              </div>
+              <div style={{ display: "flex", alignItems: "center", marginRight: "10px" }}>
+          <ReplyButton onClick={() => handleReplyButtonClick(index)}>답글</ReplyButton>
+          <DeleteButton onClick={() => handleDeleteComment(index)}>삭제</DeleteButton>
+        </div>
+        
             </OriginalComment>
 
             {comment.replies.map((reply, replyIndex) => (
@@ -374,13 +388,10 @@ const Post2 = (props) => {
                 <div style={{ flex: 1 }}>
                   <strong>{reply.user}:</strong> {reply.text}
                 </div>
-                <div style={{ marginRight: "10px" }}>
-                  <DeleteButton
-                    onClick={() => handleDeleteCommentReply(index, replyIndex)}
-                  >
-                    삭제
-                  </DeleteButton>
-                </div>
+                <div style={{ marginRight:"10px"}}>
+                <DeleteButton onClick={() => handleDeleteCommentReply(index, replyIndex)}>
+                  삭제
+                </DeleteButton></div>
               </UploadedComment>
             ))}
 
@@ -390,7 +401,7 @@ const Post2 = (props) => {
                   <CommentFooter>
                     <CommentInput
                       type="text"
-                      placeholder="Write a reply!"
+                      placeholder="답글을 남겨보세요."
                       value={comment.newReply}
                       onChange={(e) => handleReplyInputChange(e, index)}
                     />
@@ -398,13 +409,14 @@ const Post2 = (props) => {
                       <input
                         type="file"
                         accept=".jpg,.jpeg,.png,.mp4"
-                        style={{ display: "none" }}
+                        style={{ display: "none"}}
                         onChange={(e) =>
                           setAttachments([...attachments, e.target.files[0]])
                         }
                       />
                     </label>
-                    <UploadButton type="submit">등록</UploadButton>
+                    <So>
+                    <UploadButton type="submit">등록</UploadButton></So>
                   </CommentFooter>
                 </CommentForm>
               </div>
