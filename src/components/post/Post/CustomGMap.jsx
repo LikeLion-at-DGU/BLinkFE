@@ -11,7 +11,10 @@ const GMapContainer = styled.div`
   position: relative;
   width: 100%;
   max-width: 1390px;
-  height: 1080px;
+  /* height: 1080px; */
+  height: 780px;
+  margin-left: 15px;
+  border-radius: 10px;
 `;
 
 const Input = styled.input`

@@ -7,10 +7,12 @@ import { useNavigate } from "react-router-dom";
 import Box from "@mui/joy/Box/Box";
 
 const PostListSlideContainer = styled.div`
-  overflow: auto;
+  overflow: scroll;
   max-height: 900px;
-  min-height: 600px;
-  
+  max-height: 670px;
+  top: 5%;
+  position: relative;
+
   /* 스크롤 바 커스터마이징 */
   ::-webkit-scrollbar {
     width: 10px;
@@ -90,8 +92,7 @@ const postData = [
   },
 ];
 
-const InnerPostAx = styled.div`
-`
+const InnerPostAx = styled.div``;
 
 export default function PostListScroll() {
   const [posts, setPosts] = useState([]); // 데이터를 저장할 state
@@ -115,21 +116,21 @@ export default function PostListScroll() {
     navigate(`/post2/${postId}`);
   };
 
-//   return (
-//     <PostListSlideContainer>
-//       {posts.map((post) => (
-//         <div key={post.id} onClick={() => handlePostClick(post.id)}>
-//           <InnerPostAx>
-//             title={post.title}
-//             content={post.content.slice(0, 15)}
-//             jebo={post.jebo_bool}
-//             category={post.category}</InnerPostAx>
+  //   return (
+  //     <PostListSlideContainer>
+  //       {posts.map((post) => (
+  //         <div key={post.id} onClick={() => handlePostClick(post.id)}>
+  //           <InnerPostAx>
+  //             title={post.title}
+  //             content={post.content.slice(0, 15)}
+  //             jebo={post.jebo_bool}
+  //             category={post.category}</InnerPostAx>
 
-//         </div>
-//       ))}
-//     </PostListSlideContainer>
-//   );
-// }
+  //         </div>
+  //       ))}
+  //     </PostListSlideContainer>
+  //   );
+  // }
 
   return (
     <PostListSlideContainer>
@@ -154,4 +155,3 @@ export default function PostListScroll() {
     </PostListSlideContainer>
   );
 }
-
