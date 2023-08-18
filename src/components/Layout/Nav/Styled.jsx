@@ -79,7 +79,6 @@ export const NavIcon = styled.div`
 
   p {
     font-size: x-small;
-    margin-top: 10px;
   }
 `;
 

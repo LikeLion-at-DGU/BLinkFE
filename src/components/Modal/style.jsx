@@ -77,7 +77,12 @@ export const NotificationBox = styled.div`
   text-align: center;
   border-radius: 20px;
   margin-left: 20px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  display: flex;
+  justify-content: center;
 `;
 
 export const NotificationText = styled.p`
