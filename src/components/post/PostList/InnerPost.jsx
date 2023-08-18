@@ -23,8 +23,8 @@ const PostListSlideContainer = styled.div`
 const PostListBox = styled.div`
   background-color: #e7e8ed;
 
-  width: 450px;
-  height: 131px;
+  width: 380px;
+  height: 121px;
   border-radius: 16px;
   padding: 10px;
   margin: 5px;
