@@ -141,7 +141,7 @@ function Signup() {
   return (
     <S.SignupWhole>
       <S.SignUpInputContainer onSubmit={handleSubmit}>
-        <LoginTitleComponent LogintitleText="Sign up to Blink!" />
+        <LoginTitleComponent LogintitleText="Sign up to B:Link!" />
         <S.SignUpInputWrapper>
           {/* 아이디 입력 */}
           <LoginInputComponent
@@ -244,7 +244,7 @@ function Signup() {
         LoginNavigatecotent={
           <>
             이미 계정이 있다면, <br />
-            BLink에 로그인해서 <br />
+            B:Link에 로그인해서 <br />
             누군가의 눈과 귀가
             <br />
             되어주세요! <br />

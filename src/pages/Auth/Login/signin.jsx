@@ -138,14 +138,16 @@ function Signin() {
         LoginNavigatetitle={
           <>
             블랙박스로 <br />
-            세상을 Link하는
+            세상을 연결하는
             <br />
-            BLink입니다
+            눈이 되는
+            <br />
+            B:Link입니다 :)
           </>
         }
         LoginNavigatecotent={
           <>
-            BLink에 처음이신가요? <br />
+            B:Link에 처음이신가요? <br />
             여러분의 블랙박스를 <br />
             공유하고 공유받아보세요!
           </>
@@ -157,7 +159,7 @@ function Signin() {
       />
 
       <S.SigninForm onSubmit={handleSubmit}>
-        <LoginTitleComponent LogintitleText="Login to Blink!" />
+        <LoginTitleComponent LogintitleText="Login to B:Link!" />
         <S.SignInInputWrapper>
           <LoginInputComponent
             required
