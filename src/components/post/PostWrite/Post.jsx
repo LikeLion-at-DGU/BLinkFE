@@ -30,7 +30,6 @@ const Outer = styled.div`
   justify-content: center;
   margin: 100px;
   border: 1px solid white;
-  background-color: gray;
 `;
 
 const CheckDisplay = styled.div`
@@ -258,7 +257,7 @@ export default function Post({ selectedLocation }) {
         </div>
       );
     } else {
-      return <p>선택한 위치가 없습니다.</p>;
+      // return <p>선택한 위치가 없습니다.</p>;
     }
   };
 
