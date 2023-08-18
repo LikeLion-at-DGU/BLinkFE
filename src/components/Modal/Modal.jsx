@@ -56,7 +56,9 @@ export default function Modal({ setModalOpen, Id, title }) {
       <S.ModalContent ref={modalRef}>
         <S.ModalTitle>Notifications</S.ModalTitle>
         <S.ModaltitleWrap>
-          {notifications.length === 0 ? (
+          {!localStorage.getItem("token") ? (
+            <S.ModalNoContent>로그인 후 확인해주세요!</S.ModalNoContent>
+          ) : notifications.length === 0 ? (
             <S.ModalNoContent>알림이 없습니다.</S.ModalNoContent>
           ) : (
             notifications.map((notification) => (
