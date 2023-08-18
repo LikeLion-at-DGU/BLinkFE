@@ -39,7 +39,7 @@ export default function ExpertList() {
     <Upper>
       <Outlet />
       <Container>
-        <Explain><p>당신에게 맞는 전문가를 찾아보세요!</p></Explain>
+        <Explain>당신에게 맞는 전문가를 찾아보세요!</Explain>
         <Range>
           <option value="latest">최신순</option>
           <option value="relevant">관련도순</option>

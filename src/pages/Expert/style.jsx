@@ -16,9 +16,8 @@ export const Container = styled.div`
   margin-left: 100px;
 `;
 
-export const Explain = styled.p`
+export const Explain = styled.div`
   padding: 40px;
-  color: blue;
   font-size: 30px;
   font-weight: 800;
 `;
@@ -43,8 +42,9 @@ export const Outline = styled.div`
 export const Card = styled.div`
   width: 400px;
   height: 600px;
-  border: 1px solid black;
+  border: none;
   display: flex;
+  box-shadow: 0px 0px 15px rgba(73, 73, 73, 0.5);
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
@@ -58,6 +58,7 @@ export const CardImage = styled.img`
   height: 350px;
   margin-top: 15px;
   border-radius: 15px;
+object-fit: cover;
 `;
 
 export const CardJob = styled.p`
@@ -159,3 +160,4 @@ export const Commentmore = styled.p`
   padding-bottom: 30px;
   border-bottom: 1px solid gray;
 `;
+
