@@ -38,7 +38,7 @@ const CompleteBtn = styled.div`
   border-radius: 10px;
   background-color: darkblue;
   color: white;
-  textalign: center;
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,16 +54,19 @@ const CateBtn = styled(CompleteBtn)`
 const PostListBtnContainer = styled.div`
   display: flex;
   justify-content: flex-start;
-  margin: 10px;
+  margin: 10px 10px 10px 0;
+  align-items: center;
+  gap: 10px;
 `;
 
 const PostListTitle = styled.h1`
   font-weight: bold;
   font-size: 25px;
+  margin: 5px 0 0 10px;
 `;
 
 const PostListContent = styled.p`
-  margin-top: 5px;
+  margin: 5px 0 0 10px;
   font-size: 15px;
 `;
 
@@ -84,10 +87,10 @@ export default function InnerPost({
     <PostListBox>
       <PostListBtnContainer>
         <CateBtn>{jebo ? "제보해요" : "찾아요"}</CateBtn>
+        <div>{category}</div>
       </PostListBtnContainer>
       <PostListTitle>{title}</PostListTitle>
-      <div>{location}</div>
-      <div>{category}</div>
+      {/* <div>{location}</div> */}
       <div>{created_at}</div>
       <PostListContent>{content}</PostListContent>
       <div>{writer}</div>
