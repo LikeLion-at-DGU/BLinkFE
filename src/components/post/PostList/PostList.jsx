@@ -15,6 +15,7 @@ const PostListContainer = styled.div`
   border-radius: 20px;
   background-color: white;
   color: black;
+  margin-left: 100px;
 `;
 
 export default function PostList() {

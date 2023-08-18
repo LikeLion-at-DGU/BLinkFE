@@ -6,6 +6,7 @@ import Button from "@mui/joy/Button";
 import ButtonGroup from "@mui/joy/ButtonGroup";
 import Typography from "@mui/joy/Typography";
 import { Link } from "react-router-dom";
+import App from "../../../fonts/font.css";
 
 export default function MinWidthButtonGroup({
   onPostButtonClick,
@@ -23,6 +24,11 @@ export default function MinWidthButtonGroup({
       onPostButtonClick(); // Call the function to switch to Post
     }
   };
+
+const Card=styled.div`
+width:700px;
+margin-bottom:20px;
+`
 
   return (
     <Card

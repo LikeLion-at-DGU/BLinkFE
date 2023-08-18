@@ -294,7 +294,7 @@ function CustomGMap({ onUpdateLocation }) {
         <p>위도: {center.lat.toFixed(6)}</p>
         <p>경도: {center.lng.toFixed(6)}</p>
       </div> */}
-      <LeftDiv>
+      {/* <LeftDiv>
         <ClearMarkersButton3 onClick={clearAllMarkers}>
           마커 제거
         </ClearMarkersButton3>
@@ -304,7 +304,7 @@ function CustomGMap({ onUpdateLocation }) {
         <ClearMarkersButton2 onClick={temporarilyEnableClickEvent}>
           클릭 이벤트 다시 활성화
         </ClearMarkersButton2>
-      </LeftDiv>
+      </LeftDiv> */}
     </>
   );
 }
