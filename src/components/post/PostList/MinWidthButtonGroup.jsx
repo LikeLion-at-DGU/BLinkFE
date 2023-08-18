@@ -25,11 +25,14 @@ export default function MinWidthButtonGroup({
     }
   };
 
-const Card=styled.div`
-width:700px;
-margin-bottom:20px;
-margin-top:20px;
-`
+  const Card = styled.div`
+    width: 700px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    position: relative;
+    left: 1%;
+    height: 50px;
+  `;
 
   return (
     <Card
@@ -46,7 +49,13 @@ margin-top:20px;
           variant="soft"
           aria-label="outlined primary button group"
           buttonFlex="0 1 200px"
-          sx={{ width: "100%", justifyContent: "center", height: "auto" }}
+          sx={{
+            width: "100%",
+            justifyContent: "center",
+            height: "auto",
+            position: "relative",
+            right: "6%",
+          }}
         >
           <Button
             onClick={() => handleButtonClick("전체 목록")}

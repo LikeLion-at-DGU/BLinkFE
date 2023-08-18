@@ -12,7 +12,7 @@ import HomeComponent2 from "../../components/post/Post/HomeComponent2";
 const HomeContainer = styled.div`
   /* margin-left: 220px; */
   width: 1920px;
-  height: 1080px;
+  height: 780px;
   background-color: white;
 `;
 
