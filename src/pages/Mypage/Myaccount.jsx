@@ -1,21 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Mypage from "./component";
 import * as S from "./style";
-import { useEffect, useState } from "react";
 import axios from "../../assets/api/axios";
 
-export default function AccountRight() {
+export function AccountRight() {
   const [nickname, setNickname] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
+  const [profileImage, setProfileImage] = useState("/img/default.png"); // 상태 변수 추가
 
   const apiUrl = "/api/mypage/profile";
 
+  useEffect(() => {
+    const fetchProfileImage = async () => {
+      try {
+        await axios
+          .get(apiUrl, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
+          .then((response) => {
+            const data = response.data;
+            const Img = data.profile_image;
+          });
+      } catch (error) {
+        console.error("프로필 이미지 가져오기 실패:", error);
+      }
+    };
+    fetchProfileImage();
+  }, []);
+
+  const handleImagePreview = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setProfileImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleProfileUpdate = async (event) => {
     event.preventDefault();
+    const fileInput = document.getElementById("photo");
     try {
       const formData = new FormData();
+      if (fileInput.files[0]) {
+        formData.append("profile_image", fileInput.files[0]);
+      }
       formData.append("nickname", nickname);
       formData.append("old_password", oldPassword);
       formData.append("new_password", newPassword);
@@ -27,13 +62,14 @@ export default function AccountRight() {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log(response.data);
+
       alert("변경사항이 적용되었습니다.");
       window.location.reload();
     } catch (error) {
       console.error("API 호출 에러:", error);
     }
   };
+
   return (
     <>
       <form onSubmit={handleProfileUpdate}>
@@ -46,9 +82,15 @@ export default function AccountRight() {
           </p>
           <S.Textbox>
             <p style={{ fontSize: "25px" }}>프로필 사진 변경</p>
-            <S.ImgBox></S.ImgBox>
+            <S.ImgBox src={profileImage}></S.ImgBox>
             <S.Middle>
-              <input type="file" id="photo" name="photo" />
+              <input
+                type="file"
+                id="photo"
+                name="photo"
+                onChange={handleImagePreview}
+                style={{ marginLeft: "auto", marginRight: "auto" }}
+              />
             </S.Middle>
 
             <div style={{ display: "flex" }}>
@@ -69,6 +111,7 @@ export default function AccountRight() {
                   type="password"
                   value={oldPassword}
                   onChange={(event) => setOldPassword(event.target.value)}
+                  required
                 />
 
                 <S.Inputt
