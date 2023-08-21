@@ -29,6 +29,8 @@ const SelectFileButton = styled.label`
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   margin: 0 30px 0 80px;
+  justify-content:center;
+  align-items:center;
 
   &:hover {
     background-color: rgba(83, 83, 255, 0.7); ;
